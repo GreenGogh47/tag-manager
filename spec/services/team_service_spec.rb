@@ -6,7 +6,6 @@ RSpec.describe TeamService do
       it "retrieves all teams" do
         VCR.use_cassette("team_service") do
           teams = TeamService.new.get_teams
-
           expect(teams).to be_a(Hash)
 
           first_team = teams[:teams].first
@@ -16,6 +15,8 @@ RSpec.describe TeamService do
           expect(first_team[:name]).to be_a(String)
           expect(first_team).to have_key(:color)
           expect(first_team[:color]).to be_a(String)
+
+          # teams[:teams]
         end
       end
     end
