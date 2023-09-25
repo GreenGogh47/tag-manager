@@ -12,7 +12,6 @@ RSpec.describe SpacesService do
           first_space = spaces[:spaces].first
 
           expect(first_space[:id]).to eq(ENV["MY_FIRST_SPACE_ID"])
-          require 'pry'; binding.pry
         end
       end
     end

@@ -1,0 +1,7 @@
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+  Severity: warning
+
+Naming/MethodName:
+  EnforcedStyle: snake_case
+
