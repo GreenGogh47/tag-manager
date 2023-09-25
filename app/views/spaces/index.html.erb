@@ -6,6 +6,11 @@
   <h2><%= space.name %></h2>
   <p>Color: <%= space.color %></p>
   <p>Hidden: <%= space.hidden %></p>
-  <p>Statuses: <%= space.statuses %></p>
+  <p>Statuses:</p>
+  <ul>
+    <% space.statuses.each do |status| %>
+      <li><%= status.status %></li>
+    <% end %>
+  </ul>
   <p>Members: <%= space.members %></p>
 <% end %>
