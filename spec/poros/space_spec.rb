@@ -52,7 +52,8 @@ RSpec.describe Space do
     expect(@space.statuses.first).to be_a(Status)
     expect(@space.statuses.first.id).to eq("p90090228842_u4kv1Iu6")
 
-    expect(@space.members).to eq([{:user=>{:id=>66176739, :username=>"Christopher Crane", :color=>"#d60800", :profilePicture=>"https://attachments.clickup.com/profilePictures/66176739_QbA.jpg", :initials=>"CC"}}])
+    expect(@space.members).to be_a(Array)
+    expect(@space.members.first).to be_a(Member)
+    expect(@space.members.first.id).to eq(66176739)
   end
-
 end
