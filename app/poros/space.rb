@@ -11,7 +11,7 @@ class Space
     @name = data[:name]
     @color = data[:color]
     @hidden = data[:private]
-    @statuses = data[:statuses]
+    @statuses = data[:statuses].map { |status_data| Status.new(status_data) }
     @members = data[:members]
   end
 end
