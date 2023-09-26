@@ -1,16 +1,24 @@
-# Spaces
 
 
+<% @spaces.each do |space| %>
 
-<% @spaces_facade.spaces.each do |space| %>
-  <h2><%= space.name %></h2>
-  <p>Color: <%= space.color %></p>
-  <p>Hidden: <%= space.hidden %></p>
+  <div class="p-3 mb-2" style="background-color: <%= space.color %>;">
+    <h2><%= space.name %></h2>
+    <p><%= space.hidden? %></p>
+    <p>Members:</p>
+    <ul>
+      <% space.members.each do |member| %>
+        <li><%= member.username %></li>
+      <% end %>
+    </ul>
+  </div>
+
   <p>Statuses:</p>
   <ul>
     <% space.statuses.each do |status| %>
       <li><%= status.status %></li>
     <% end %>
   </ul>
-  <p>Members: <%= space.members %></p>
+
 <% end %>
+

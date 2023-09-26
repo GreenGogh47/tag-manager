@@ -14,4 +14,8 @@ class Space
     @statuses = data[:statuses].map { |status_data| Status.new(status_data) }
     @members = data[:members].map { |member_data| Member.new(member_data)}
   end
+
+  def hidden?
+    hidden ? "Private" : "Public"
+  end
 end

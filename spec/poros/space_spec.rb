@@ -56,4 +56,13 @@ RSpec.describe Space do
     expect(@space.members.first).to be_a(Member)
     expect(@space.members.first.id).to eq(66176739)
   end
+
+  describe "instance methods" do
+    it "#hidden?" do
+      expect(@space.hidden?).to eq("Private")
+
+      allow(@space).to receive(:hidden).and_return(false)
+      expect(@space.hidden?).to eq("Public")
+    end
+  end
 end
