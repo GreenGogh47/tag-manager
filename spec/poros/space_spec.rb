@@ -64,5 +64,9 @@ RSpec.describe Space do
       allow(@space).to receive(:hidden).and_return(false)
       expect(@space.hidden?).to eq("Public")
     end
+
+    it "#all_members" do
+      expect(@space.all_members).to eq("Christopher Crane")
+    end
   end
 end
