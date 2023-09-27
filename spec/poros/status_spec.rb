@@ -13,7 +13,7 @@ RSpec.describe Status do
 
       expect(status).to be_a(Status)
       expect(status.id).to eq("p90090228842_u4kv1Iu6")
-      expect(status.status).to eq("Open")
+      expect(status.name).to eq("Open")
       expect(status.type).to eq("open")
       expect(status.orderindex).to eq(0)
       expect(status.color).to eq("#d3d3d3")

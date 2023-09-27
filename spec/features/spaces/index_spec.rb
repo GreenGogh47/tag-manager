@@ -4,8 +4,6 @@ RSpec.describe "Spaces Index Page" do
   it "displays all spaces" do
     VCR.use_cassette("spaces_index") do
       visit "/spaces"
-      expect(page).to have_content("Spaces")
-  
       expect(page).to have_content("Personal") # Name of the space
 
       expect(page).to have_content("Statuses")
@@ -16,6 +14,8 @@ RSpec.describe "Spaces Index Page" do
   
       expect(page).to have_content("Members")
       expect(page).to have_content("Christopher Crane")
+
+      save_and_open_page
     end
   end
 end

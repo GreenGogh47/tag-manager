@@ -1,24 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  </head>
+  <body>
+    <%# Begin Colums %>
 
+    <div class="container text-center p-5 mb-5">
+      <div class="row row-cols-2">
 
-<% @spaces.each do |space| %>
+        <%# Begin Cards %>
+        <% @spaces.each do |space| %>
+          <div class="col">
+            <div class="card mb-4">
+              <div class="card-header" style="background-color: <%= space.color %>;">
+                <h3 class="card-title text-white"><%= space.name %></h3>
+                <small class="text-muted"><%= space.hidden? %></small>
+              </div>
 
-  <div class="p-3 mb-2" style="background-color: <%= space.color %>;">
-    <h2><%= space.name %></h2>
-    <p><%= space.hidden? %></p>
-    <p>Members:</p>
-    <ul>
-      <% space.members.each do |member| %>
-        <li><%= member.username %></li>
-      <% end %>
-    </ul>
-  </div>
+              <%# Members if greater than 1 %>
+              <div class="card-body">
+                <h6 class="card-subtitle text-muted">Members: <%= space.all_members %></h6>
+              </div>
 
-  <p>Statuses:</p>
-  <ul>
-    <% space.statuses.each do |status| %>
-      <li><%= status.status %></li>
-    <% end %>
-  </ul>
+              <%# Statuses %>
+              <div class="card-footer">
+                <h6 class="card-subtitle mb-2 text-muted">Statuses:</h6>
+                <ul>
+                  <% space.statuses.each do |status| %>
+                    <li><%= status.name %></li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+          </div>
+        <% end %>
 
-<% end %>
+        <%# End Cards %>
+      </div>
+    </div>
 
+    <%# End Cards %>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
+</html>
