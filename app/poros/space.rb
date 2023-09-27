@@ -6,6 +6,8 @@ class Space
               :tags_enabled,
               :statuses,
               :members
+
+  attr_accessor :tags
   
   def initialize(data)
     @id = data[:id]
@@ -15,6 +17,7 @@ class Space
     @tags_enabled = data[:features][:tags][:enabled]
     @statuses = data[:statuses].map { |status_data| Status.new(status_data) }
     @members = data[:members].map { |member_data| Member.new(member_data)}
+    @tags = []
   end
 
   def hidden?
