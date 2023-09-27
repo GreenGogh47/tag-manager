@@ -5,6 +5,7 @@ class TagsFacade
     @space_id = space_id
     @tags = []
     load_tags
+    sort_by_color
   end
 
   private
@@ -15,5 +16,9 @@ class TagsFacade
     service[:tags].each do |tag_data|
       @tags << Tag.new(tag_data)
     end
+  end
+
+  def sort_by_color
+    @tags.sort_by! { |tag| tag.tag_bg }
   end
 end

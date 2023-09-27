@@ -25,7 +25,6 @@ class SpacesFacade
   
 
   private
-
   def load_spaces_and_tags
     space_service = SpacesService.new.get_spaces(@team_id)
 
