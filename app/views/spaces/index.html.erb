@@ -31,7 +31,9 @@
                 <h6 class="card-subtitle mb-2 text-muted">Statuses:</h6>
                 <ul>
                   <% space.statuses.each do |status| %>
-                    <li><%= status.name %></li>
+                    <button type="button" class="btn btn-primary" style="background-color: <%= status.color %>;">
+                      <%= status.name %>
+                    </button>
                   <% end %>
                 </ul>
               </div>
