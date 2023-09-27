@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Tags do
+RSpec.describe Tag do
   before(:each) do
     data = {
       :name=>"jami",
@@ -10,10 +10,11 @@ RSpec.describe Tags do
       :creator=>66176739
     }
 
-    @tag = Tags.new(data)
+    @tag = Tag.new(data)
   end
 
   it "has attributes" do
+    expect(@tag).to be_a(Tag)
     expect(@tag.name).to eq("jami")
     expect(@tag.project_id).to eq("90090228842")
     expect(@tag.tag_fg).to eq("#800000")

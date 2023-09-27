@@ -13,7 +13,7 @@
       <div class="row row-cols-2">
 
         <%# Begin Cards %>
-        <% @spaces.each do |space| %>
+        <% @spaces.spaces.each do |space| %>
           <div class="col">
             <div class="card mb-4">
               <div class="card-header" style="background-color: <%= space.color %>;">
@@ -39,19 +39,45 @@
               </div>
 
               <%# Tags %>
-
+              <div class="card-footer">
+                <h6 class="card-subtitle mb-2 text-muted">Tags</h6>
+                <ul>
+                  <% @spaces.unique_tags(space).each do |tag| %>
+                    <button type="button" class="btn btn-light" style="background-color: <%= tag.tag_bg %>;">
+                      <%= tag.name %>
+                    </button>
+                  <% end %>
+                </ul>
+              </div>
 
               <%# End Tags %>
-              
             </div>
           </div>
         <% end %>
 
-        <%# End Cards %>
+        <%# End Spaces Cards %>
       </div>
     </div>
 
     <%# End Colums %>
+
+    <%# Shared Tags %>
+    <div class="card mt-4">
+      <div class="card-header">
+        <h5 class="card-title">Shared Tags</h5>
+      </div>
+      <div class="card-body">
+        <ul>
+          <% @spaces.shared_tags.each do |tag| %>
+            <button type="button" class="btn btn-light custom-text-color" style="background-color: <%= tag.tag_bg %>;">
+              <%= tag.name %>
+            </button>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   </body>

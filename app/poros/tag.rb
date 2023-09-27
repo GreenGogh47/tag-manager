@@ -1,4 +1,4 @@
-class Tags
+class Tag
   attr_reader :name,
               :project_id,
               :tag_fg,
