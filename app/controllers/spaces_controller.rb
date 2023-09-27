@@ -1,6 +1,6 @@
 class SpacesController < ApplicationController
   def index
-    @spaces = SpacesFacade.new.spaces
-    # require 'pry'; binding.pry
+    my_team = TeamService.new.get_my_team
+    @spaces = SpacesFacade.new(my_team).spaces
   end
 end
