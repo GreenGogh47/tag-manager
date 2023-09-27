@@ -42,42 +42,31 @@ RSpec.describe Space do
   end
 
   it "exists" do
-    statuses = [{
-      :id=>"p90090228842_u4kv1Iu6",
-      :status=>"Open",
-      :type=>"open",
-      :orderindex=>0,
-      :color=>"#d3d3d3"
-    },
-    {
-      :id=>"p90090228842_ed7ZhKIM",
-      :status=>"in progress",
-      :type=>"custom",
-      :orderindex=>1,
-      :color=>"#81B1FF"
-    },
-    {
-      :id=>"p90090228842_sgP0Eljz",
-      :status=>"roadblock",
-      :type=>"custom",
-      :orderindex=>2,
-      :color=>"#f9d900"
-    },
-    {
-      :id=>"p90090228842_VYrFKFQ1",
-      :status=>"complete",
-      :type=>"closed",
-      :orderindex=>3,
-      :color=>"#6bc950"
-    }]
-
     expect(@space).to be_a(Space)
     expect(@space.id).to eq("90090228842")
     expect(@space.name).to eq("Personal")
     expect(@space.color).to eq("#3498DB")
     expect(@space.hidden).to eq(true) # private is a reserved word
-    expect(@space.statuses).to eq(statuses)
-    expect(@space.members).to eq([{:user=>{:id=>66176739, :username=>"Christopher Crane", :color=>"#d60800", :profilePicture=>"https://attachments.clickup.com/profilePictures/66176739_QbA.jpg", :initials=>"CC"}}])
+
+    expect(@space.statuses).to be_a(Array)
+    expect(@space.statuses.first).to be_a(Status)
+    expect(@space.statuses.first.id).to eq("p90090228842_u4kv1Iu6")
+
+    expect(@space.members).to be_a(Array)
+    expect(@space.members.first).to be_a(Member)
+    expect(@space.members.first.id).to eq(66176739)
   end
 
+  describe "instance methods" do
+    it "#hidden?" do
+      expect(@space.hidden?).to eq("Private")
+
+      allow(@space).to receive(:hidden).and_return(false)
+      expect(@space.hidden?).to eq("Public")
+    end
+
+    it "#all_members" do
+      expect(@space.all_members).to eq("Christopher Crane")
+    end
+  end
 end

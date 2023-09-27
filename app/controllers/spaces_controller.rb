@@ -1,6 +1,6 @@
 class SpacesController < ApplicationController
   def index
-    @spaces_facade = SpacesFacade.new
+    @spaces = SpacesFacade.new.spaces
     # require 'pry'; binding.pry
   end
 end

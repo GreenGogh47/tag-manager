@@ -3,6 +3,7 @@ class Space
               :name,
               :color,
               :hidden,
+              :tags_enabled,
               :statuses,
               :members
   
@@ -11,7 +12,16 @@ class Space
     @name = data[:name]
     @color = data[:color]
     @hidden = data[:private]
-    @statuses = data[:statuses]
-    @members = data[:members]
+    @tags_enabled = data[:features][:tags][:enabled]
+    @statuses = data[:statuses].map { |status_data| Status.new(status_data) }
+    @members = data[:members].map { |member_data| Member.new(member_data)}
+  end
+
+  def hidden?
+    hidden ? "Private" : "Public"
+  end
+
+  def all_members
+    members.map { |member| member.username }.join(", ")
   end
 end
