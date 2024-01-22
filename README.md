@@ -99,10 +99,12 @@
 <br>
     *Personal tokens start with 'pk_'*
 
-1. Update the `config/application.yml` with your API key.
+1. Update the `config/application.yml` with your API key, your personal team id, and your space ID. If you're subscribed to multiple spaces, it should be the first one listed.
     ```bash
     # config/application.yml
-    CLICKUP_API_KEY: pk_###########################
+    CLICKUP_API_KEY: "pk_###########################"
+    MY_TEAM_ID: "90########"
+    MY_SPACE_ID: "900########"
     ```
 
 ## Acknowledgments
