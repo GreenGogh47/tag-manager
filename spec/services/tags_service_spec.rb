@@ -9,7 +9,6 @@ RSpec.describe TagsService do
           expect(data).to be_a(Hash)
 
           tags = data[:tags]
-          require 'pry'; binding.pry
           expect(tags).to be_an(Array)
           expect(tags.first).to have_key(:name)
           expect(tags.first).to have_key(:project_id)
