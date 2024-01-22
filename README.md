@@ -105,6 +105,11 @@
     CLICKUP_API_KEY: pk_###########################
     ```
 
+## Acknowledgments
+
+- ["The Best README Template" by Github User othneil](https://github.com/othneildrew/Best-README-Template)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
 

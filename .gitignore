@@ -35,5 +35,11 @@
 
 /node_modules
 
+# To hide API key
 /config/application.yml
+
+# Saved VCR files
 fixtures
+
+# Personal notes
+PROJECT_NOTES.md

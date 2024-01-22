@@ -4,7 +4,7 @@ class Status
               :type,
               :orderindex,
               :color
-  
+
   def initialize(data)
     @id = data[:id]
     @name = data[:status]

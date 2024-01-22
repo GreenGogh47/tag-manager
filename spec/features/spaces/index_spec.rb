@@ -11,7 +11,6 @@ RSpec.describe "Spaces Index Page" do
       # expect(page).to have_content("in progress")
       # expect(page).to have_content("roadblock")
       # expect(page).to have_content("complete")
-  
       expect(page).to have_content("Members")
       expect(page).to have_content("Christopher Crane")
 

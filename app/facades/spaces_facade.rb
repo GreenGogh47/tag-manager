@@ -9,20 +9,25 @@ class SpacesFacade
 
   def shared_tags
     first_space_tags = @spaces.first.tags
-    shared_tags = first_space_tags.select do |tag|
-      @spaces.all? { |space| space.tags.any? { |space_tag| space_tag.name == tag.name && space_tag.tag_bg == tag.tag_bg } }
+    first_space_tags.select do |tag|
+      @spaces.all? do |space|
+        space.tags.any? do |space_tag|
+          space_tag.name == tag.name && space_tag.tag_bg == tag.tag_bg
+        end
+      end
     end
-    shared_tags
   end
 
   def unique_tags(space)
     space_tags = space.tags
-    unique_tags = space_tags.reject do |tag|
-      @spaces.all? { |other_space| other_space.tags.any? { |space_tag| space_tag.name == tag.name && space_tag.tag_bg == tag.tag_bg } }
+    space_tags.reject do |tag|
+      @spaces.all? do |other_space|
+        other_space.tags.any? do |space_tag|
+          space_tag.name == tag.name && space_tag.tag_bg == tag.tag_bg
+        end
+      end
     end
-    unique_tags
   end
-  
 
   private
 

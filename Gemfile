@@ -52,24 +52,31 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 gem "faraday"
-gem 'figaro'
-gem 'jsonapi-serializer'
+gem "figaro"
+gem "jsonapi-serializer"
+
+gem "bootstrap"
+gem "jquery-rails"
+gem 'sassc-rails', '~> 2.1'
+gem "cssbundling-rails"
+gem "bootstrap-scss"
+
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[mri mingw x64_mingw]
-  gem "rspec-rails"
   gem "pry"
-  gem "shoulda-matchers"
+  gem "rspec-rails"
   gem "rubocop", require: false
+  gem "shoulda-matchers"
 end
 
 group :test do
-  gem "webmock"
-  gem "vcr"
-  gem "orderly"
-  gem "launchy"
   gem "capybara"
+  gem "launchy"
+  gem "orderly"
+  gem "vcr"
+  gem "webmock"
 end
 
 group :development do
