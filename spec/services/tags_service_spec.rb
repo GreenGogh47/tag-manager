@@ -5,10 +5,11 @@ RSpec.describe TagsService do
     describe "#get_tags" do
       it "retrieves all tags" do
         VCR.use_cassette("tags_service") do
-          data = TagsService.new.get_tags(ENV["MY_FIRST_SPACE_ID"])
+          data = TagsService.new.get_tags(ENV["MY_SPACE_ID"])
           expect(data).to be_a(Hash)
 
           tags = data[:tags]
+          require 'pry'; binding.pry
           expect(tags).to be_an(Array)
           expect(tags.first).to have_key(:name)
           expect(tags.first).to have_key(:project_id)
