@@ -33,7 +33,6 @@ class SpacesFacade
 
   def load_spaces_and_tags
     space_service = SpacesService.new.get_spaces(@team_id)
-
     space_service[:spaces].each do |space_data|
       space = Space.new(space_data)
       tags = TagsFacade.new(space.id)
