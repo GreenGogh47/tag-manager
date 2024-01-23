@@ -14,8 +14,6 @@ RSpec.describe "Spaces Index Page" do
       expect(page).to have_content("Members")
       expect(page).to have_content("Christopher Crane")
 
-      save_and_open_page
-
       expect(page).to have_content("Tags")
       expect(page).to have_content("jami")
     end
