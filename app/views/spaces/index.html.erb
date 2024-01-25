@@ -68,9 +68,11 @@
                     <ul class="dropdown-menu">
 
                       <%# Update other dropdown items to be a form. %>
-                      
+
                       <li>
-                        <%= form_tag(tag_path(tag), method: :patch) do %>
+                        <%= form_tag(tag_path(tag), data: {
+                          controller: "colors"
+                        } method: :patch) do %>
                           <div class="dropdown-item">
                             <%= submit_tag "Update" %>
                           </div>
