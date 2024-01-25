@@ -1,11 +1,12 @@
 class TagsController < ApplicationController
   def update
+    require 'pry'; binding.pry
     tag = Tag.find(params[:id])
 
     if tag.update(tag_params)
       redirect_to spaces_path, notice: "Tag Updated!"
     else
-      notice: "sumins rong"
+      redirect_to spaces_path, notice: "sumins rong"
     end
   end
 
