@@ -63,10 +63,22 @@
                 <% @spaces.unique_tags(space).each do |tag| %>
                   <div class="btn-group">
                     <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: <%= tag.tag_bg %>; color: black; border: 1px solid black;">
-                      <%= tag.name %>
-                    </button>
+                    <%= tag.name %>
+                  </button>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Update this Tag</a></li>
+
+                      <%# Update other dropdown items to be a form. %>
+                      
+                      <li>
+                        <%= form_tag(tag_path(tag), method: :patch) do %>
+                          <div class="dropdown-item">
+                            <%= submit_tag "Update" %>
+                          </div>
+                        <% end %>
+                      </li>
+
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="#">Match to this Color</a></li>
                       <li><hr class="dropdown-divider"></li>
                       <li><a class="dropdown-item" href="#">Make this Tag a "Shared Tag"</a></li>
                       <li><hr class="dropdown-divider"></li>
