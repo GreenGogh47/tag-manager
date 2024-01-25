@@ -1,6 +1,7 @@
 class TagsController < ApplicationController
   def update
-    require 'pry'; binding.pry
+    require "pry"
+    binding.pry
     tag = Tag.find(params[:id])
 
     if tag.update(tag_params)

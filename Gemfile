@@ -56,11 +56,10 @@ gem "figaro"
 gem "jsonapi-serializer"
 
 gem "bootstrap"
-gem "jquery-rails"
-gem 'sassc-rails', '~> 2.1'
-gem "cssbundling-rails"
 gem "bootstrap-scss"
-
+gem "cssbundling-rails"
+gem "jquery-rails"
+gem "sassc-rails", "~> 2.1"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
