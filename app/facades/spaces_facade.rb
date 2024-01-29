@@ -3,8 +3,8 @@ class SpacesFacade
 
   def initialize(team_id)
     @team_id = team_id
-    @spaces = []
-    load_spaces_and_tags
+    @service = ClickupApiService.new
+    load_database
   end
 
   def shared_tags
@@ -31,14 +31,38 @@ class SpacesFacade
 
   private
 
-  def load_spaces_and_tags
-    space_service = SpacesService.new.get_spaces(@team_id)
+  def load_database
+    create_spaces
+  end
 
-    space_service[:spaces].each do |space_data|
-      space = Space.new(space_data)
-      tags = TagsFacade.new(space.id)
-      space.tags = tags.tags
-      @spaces << space
+  def create_spaces
+    spaces = @service.get_spaces(@team_id)
+    spaces[:spaces].each do |space|
+      new_space = Space.create!(id: space[:id].to_i, name: space[:name], color: space[:color], hidden: space[:private], tags_enabled: space[:features][:tags][:enabled])
+      
+      space[:members].each do |member|
+        # currently only 1 member - see clickupapi "fetch_my_team_id"
+        new_member = Member.create!(id: member[:user][:id], username: member[:user][:username], color: member[:user][:color], profile_picture: member[:user][:profilePicture], initials: member[:user][:initials])
+        require 'pry'; binding.pry
+        
+      end
     end
   end
+
+  # def create_members
+    # spaces = @service.get_spaces(@team_id)
+    # members = 
+  # end
+
+  # def create_space_members
+
+  # end
+
+  # def create_statuses
+
+  # end
+
+  # def create_tags
+
+  # end
 end

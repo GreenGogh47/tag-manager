@@ -15,6 +15,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_25_211040) do
   enable_extension "plpgsql"
 
   create_table "members", force: :cascade do |t|
+    t.string "username"
+    t.string "color"
+    t.string "profile_picture"
+    t.string "initials"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -6,6 +6,7 @@ RSpec.describe Space, type: :model do
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:color) }
     it { should validate_presence_of(:hidden) } # "private" is a reserved word
+    it { should validate_presence_of(:tags_enabled) }
   end
 
   describe "associations" do

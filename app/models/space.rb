@@ -2,7 +2,8 @@ class Space < ApplicationRecord
   validates_presence_of :id,
                         :name,
                         :color,
-                        :hidden
+                        :hidden,
+                        :tags_enabled
 
   has_many :statuses
   has_many :tags
