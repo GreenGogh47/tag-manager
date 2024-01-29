@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 require "rails_helper"
 
 RSpec.describe ClickupApiService do
