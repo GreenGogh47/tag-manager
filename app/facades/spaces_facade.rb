@@ -4,7 +4,8 @@ class SpacesFacade
   def initialize(team_id)
     @team_id = team_id
     @service = ClickupApiService.new
-    load_database
+    create_spaces
+    require 'pry'; binding.pry
   end
 
   def shared_tags
@@ -31,36 +32,27 @@ class SpacesFacade
 
   private
 
-  def load_database
-    create_spaces
-  end
-
   def create_spaces
     spaces = @service.get_spaces(@team_id)
     spaces[:spaces].each do |space|
       new_space = Space.create!(id: space[:id].to_i, name: space[:name], color: space[:color], hidden: space[:private], tags_enabled: space[:features][:tags][:enabled])
-      
-      space[:members].each do |member|
-        # currently only 1 member - see clickupapi "fetch_my_team_id"
-        new_member = Member.create!(id: member[:user][:id], username: member[:user][:username], color: member[:user][:color], profile_picture: member[:user][:profilePicture], initials: member[:user][:initials])
-        require 'pry'; binding.pry
-        
-      end
+      create_members_for_space(new_space, space[:members])
+      create_statuses_for_space(new_space, space[:statuses])
     end
   end
 
-  # def create_members
-    # spaces = @service.get_spaces(@team_id)
-    # members = 
-  # end
+  def create_members_for_space(space, members_data)
+    members_data.each do |member|
+      new_member = Member.create!(id: member[:user][:id], username: member[:user][:username], color: member[:user][:color], profile_picture: member[:user][:profilePicture], initials: member[:user][:initials])
+      SpaceMember.create!(space_id: space.id, member_id: new_member.id)
+    end
+  end
 
-  # def create_space_members
-
-  # end
-
-  # def create_statuses
-
-  # end
+  def create_statuses_for_space(space, statuses_data)
+    statuses_data.each do |status|
+      Status.create!(name: status[:status], orderindex: status[:orderindex], color: status[:color], space_id: space.id)
+    end
+  end
 
   # def create_tags
 

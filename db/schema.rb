@@ -43,7 +43,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_25_211040) do
 
   create_table "statuses", force: :cascade do |t|
     t.string "name"
-    t.string "type"
     t.integer "orderindex"
     t.string "color"
     t.bigint "space_id"
