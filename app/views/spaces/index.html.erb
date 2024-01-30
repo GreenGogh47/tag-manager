@@ -15,7 +15,7 @@
     </div>
     <div class="card-body">
       <ul>
-        <% @spaces.shared_tags.each do |tag| %>
+        <% @shared_tags.each do |tag| %>
           <button type="button" class="btn btn-light custom-text-color" style="background-color: <%= tag.tag_bg %>;">
             <%= tag.name %>
           </button>

@@ -7,17 +7,5 @@ class Tag < ApplicationRecord
   
   belongs_to :space
 
-  def self.shared_tags
-    joins(:space)
-      .where.not(spaces: { id: nil })
-      .group(:name, :tag_bg)
-      .having('COUNT(spaces.id) = ?', Space.count)
-  end
-
-  def self.unique_tags
-    joins(:space)
-      .where.not(spaces: { id: nil })
-      .group(:name, :tag_bg)
-      .having('COUNT(spaces.id) < ?', Space.count)
-  end
+  scope :shared_tags, ->(name, bg_color) { where(name: name, tag_bg: bg_color) }
 end
