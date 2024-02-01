@@ -1,9 +1,9 @@
 class SpacesFacade
   attr_reader :spaces
 
-  def initialize(team_id)
+  def initialize(team_id, service)
     @team_id = team_id
-    @service = ClickupApiService.new
+    @service = service
     create_spaces
   end
 
@@ -26,12 +26,13 @@ class SpacesFacade
 
   def create_members_for_space(space, members_data)
     members_data.each do |member|
-      Member.find_or_create_by!(id: member[:user][:id]) do |m|
+      new_member = Member.find_or_create_by!(id: member[:user][:id]) do |m|
         m.username = member[:user][:username]
         m.color = member[:user][:color]
         m.profile_picture = member[:user][:profilePicture]
         m.initials = member[:user][:initials]
       end
+      SpaceMember.create!(space_id: space.id, member_id: new_member.id)
     end
   end
 

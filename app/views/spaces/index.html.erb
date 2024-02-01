@@ -16,8 +16,8 @@
     <div class="card-body">
       <ul>
         <% @shared_tags.each do |tag| %>
-          <button type="button" class="btn btn-light custom-text-color" style="background-color: <%= tag.tag_bg %>;">
-            <%= tag.name %>
+          <button type="button" class="btn btn-light custom-text-color" style="background-color: <%= tag["tag_bg"] %>;">
+            <%= tag["name"] %>
           </button>
         <% end %>
       </ul>
@@ -29,7 +29,7 @@
     <div class="row row-cols-2">
 
       <%# Cards %>
-      <% @spaces.spaces.each do |space| %>
+      <% @spaces.each do |space| %>
         <div class="col">
           <div class="card mb-4">
             <div class="card-header" style="background-color: <%= space.color %>;">
@@ -41,7 +41,12 @@
 
             <%# Members %>
             <div class="card-body">
-              <h6 class="card-subtitle text-muted">Members: <%= space.all_members %></h6>
+              <h6 class="card-subtitle text-muted">
+                Members:
+                <% space.members.map(&:username).uniq.each do |name| %>
+                  <%= name %>
+                <% end %>
+              </h6> 
             </div>
 
             <%# Statuses %>
@@ -60,7 +65,7 @@
             <div class="card-footer">
               <h6 class="card-subtitle mb-2 text-muted">Tags</h6>
               <ul>
-                <% @spaces.unique_tags(space).each do |tag| %>
+                <% space.tags.each do |tag| %>
                   <div class="btn-group">
                     <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: <%= tag.tag_bg %>; color: black; border: 1px solid black;">
                     <%= tag.name %>

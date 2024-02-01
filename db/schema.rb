@@ -15,12 +15,14 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_25_211040) do
   enable_extension "plpgsql"
 
   create_table "members", force: :cascade do |t|
+    t.bigint "space_id"
     t.string "username"
     t.string "color"
     t.string "profile_picture"
     t.string "initials"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["space_id"], name: "index_members_on_space_id"
   end
 
   create_table "space_members", force: :cascade do |t|
@@ -42,26 +44,27 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_25_211040) do
   end
 
   create_table "statuses", force: :cascade do |t|
+    t.bigint "space_id"
     t.string "name"
     t.integer "orderindex"
     t.string "color"
-    t.bigint "space_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["space_id"], name: "index_statuses_on_space_id"
   end
 
   create_table "tags", force: :cascade do |t|
+    t.bigint "space_id"
     t.string "name"
     t.string "tag_fg"
     t.string "tag_bg"
     t.integer "creator"
-    t.bigint "space_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["space_id"], name: "index_tags_on_space_id"
   end
 
+  add_foreign_key "members", "spaces"
   add_foreign_key "space_members", "members"
   add_foreign_key "space_members", "spaces"
   add_foreign_key "statuses", "spaces"
