@@ -15,7 +15,7 @@
     </div>
     <div class="card-body">
       <ul>
-        <% @shared_tags.each do |tag| %>
+        <% @global_tags.each do |tag| %>
           <button type="button" class="btn btn-light custom-text-color" style="background-color: <%= tag["tag_bg"] %>;">
             <%= tag["name"] %>
           </button>
@@ -65,7 +65,7 @@
             <div class="card-footer">
               <h6 class="card-subtitle mb-2 text-muted">Tags</h6>
               <ul>
-                <% space.tags.each do |tag| %>
+                <% space.non_global_tags.each do |tag| %>
                   <div class="btn-group">
                     <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: <%= tag.tag_bg %>; color: black; border: 1px solid black;">
                     <%= tag.name %>

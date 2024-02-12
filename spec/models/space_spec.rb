@@ -27,12 +27,4 @@ RSpec.describe Space, type: :model do
     it { should have_many(:members) }
     it { should have_many(:tags) }
   end
-
-  describe "model methods" do
-    it "::shared_tags" do
-      expect(Space.shared_tags).to be_an(Array)
-      expect(Space.shared_tags.first).to be_a(OpenStruct)
-      expect(Space.shared_tags.first.name).to eq("shared 1")
-    end
-  end
 end

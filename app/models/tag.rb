@@ -6,6 +6,4 @@ class Tag < ApplicationRecord
                         :creator
   
   belongs_to :space
-
-  # scope :shared_tags, ->(name, bg_color) { where(name: name, tag_bg: bg_color) }
 end
