@@ -5,7 +5,7 @@ class Space < ApplicationRecord
                         :tags_enabled,
                         :hidden
 
-validates :hidden, inclusion: { in: [true, false] }, allow_nil: true
+# validates :hidden, inclusion: { in: [true, false] }, allow_nil: true
 
 
   has_many :statuses

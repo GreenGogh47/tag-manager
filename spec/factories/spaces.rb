@@ -4,6 +4,6 @@ FactoryBot.define do
     name { "a name" }
     color { "a color" }
     tags_enabled { true }
-    hidden { false }
+    hidden { true }
   end
 end

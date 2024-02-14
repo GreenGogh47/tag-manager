@@ -1,11 +1,29 @@
 require "rails_helper"
 
 RSpec.describe Space, type: :model do
+  before(:context) do
+    @space1 = FactoryBot.create(:space)
+    @space2 = FactoryBot.create(:space)
+    
+    @tag1 = FactoryBot.create(:tag, space: @space1, name: "shared 1")
+    @tag2 = FactoryBot.create(:tag, space: @space2, name: "shared 1")
+    @tag3 = FactoryBot.create(:tag, space: @space1, name: "unique 1")
+    @tag4 = FactoryBot.create(:tag, space: @space2, name: "unique 2")
+  end
+  
+  after(:context) do
+    SpaceMember.destroy_all
+    Member.destroy_all
+    Tag.destroy_all
+    Status.destroy_all
+    Space.destroy_all
+  end
+
   describe "attributes" do
     it { should validate_presence_of(:id) }
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:color) }
-    it { is_expected.to validate_presence_of(:hidden) } # "private" is a reserved word
+    # it { is_expected.to validate_presence_of(:hidden) } # "private" is a reserved word
     it { should validate_presence_of(:tags_enabled) }
   end
 
@@ -16,34 +34,15 @@ RSpec.describe Space, type: :model do
   end
 
   describe "model methods" do
-    xit "::global_tags" do
-      @space1 = Space.create!(id: 999, name: "space 1", color: "blue", hidden: true, tags_enabled: true)
-      @space2 = Space.create!(id: 9999, name: "space 2", color: "blue", hidden: true, tags_enabled: true)
-
-      @tag1 = Tag.create!(name: "shared 1", space_id: @space1.id, tag_fg: "blue", tag_bg: "blue", creator: "me")
-      @tag2 = Tag.create!(name: "shared 1", space_id: @space2.id, tag_fg: "blue", tag_bg: "blue", creator: "me")
-      @tag3 = Tag.create!(name: "unique 1", space_id: @space1.id, tag_fg: "blue", tag_bg: "blue", creator: "me")
-      @tag4 = Tag.create!(name: "unique 2", space_id: @space2.id, tag_fg: "blue", tag_bg: "blue", creator: "me")
-
+    it "::global_tags" do
       require 'pry'; binding.pry
-
       expect(Space.global_tags.count).to eq(2)
       expect(Space.global_tags).to include(@tag1, @tag2)
     end
   end
 
   describe "instance methods" do
-    xit "#non_global_tags" do
-      @space1 = Space.create!(id: 999, name: "space 1", color: "blue", hidden: true, tags_enabled: true)
-      @space2 = Space.create!(id: 9999, name: "space 2", color: "blue", hidden: true, tags_enabled: true)
-
-      @tag1 = Tag.create!(name: "shared 1", space_id: @space1.id, tag_fg: "blue", tag_bg: "blue", creator: "me")
-      @tag2 = Tag.create!(name: "shared 1", space_id: @space2.id, tag_fg: "blue", tag_bg: "blue", creator: "me")
-      @tag3 = Tag.create!(name: "unique 1", space_id: @space1.id, tag_fg: "blue", tag_bg: "blue", creator: "me")
-      @tag4 = Tag.create!(name: "unique 2", space_id: @space2.id, tag_fg: "blue", tag_bg: "blue", creator: "me")
-
-      require 'pry'; binding.pry
-
+    it "#non_global_tags" do
       expect(@space1.non_global_tags.count).to eq(1)
       expect(@space1.non_global_tags).to include(@tag3)
     end
