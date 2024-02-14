@@ -15,7 +15,7 @@ class SpacesFacade
       new_space = Space.find_or_create_by!(id: space[:id].to_i) do |s|
         s.name = space[:name]
         s.color = space[:color]
-        s.hidden = space[:private]
+        s.hidden = space[:private] ? "Private" : "Public"
         s.tags_enabled = space[:features][:tags][:enabled]
       end
       create_members_for_space(new_space, space[:members])

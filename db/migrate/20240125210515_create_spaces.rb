@@ -3,7 +3,7 @@ class CreateSpaces < ActiveRecord::Migration[7.0]
     create_table :spaces do |t|
       t.string :name
       t.string :color
-      t.boolean :hidden
+      t.string :hidden
       t.boolean :tags_enabled
 
       t.timestamps

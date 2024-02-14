@@ -16,9 +16,9 @@
     <div class="card-body">
       <ul>
         <% @global_tags.each do |tag| %>
-          <button type="button" class="btn btn-light custom-text-color" style="background-color: <%= tag["tag_bg"] %>;">
-            <%= tag.name %>
-          </button>
+          <div class="btn-group">
+            <%= render partial: "partials/tag_button", locals: { tag: tag } %>
+          </div>
         <% end %>
       </ul>
     </div>
@@ -67,30 +67,7 @@
               <ul>
                 <% space.non_global_tags.each do |tag| %>
                   <div class="btn-group">
-                    <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: <%= tag.tag_bg %>; color: black; border: 1px solid black;">
-                    <%= tag.name %>
-                  </button>
-                    <ul class="dropdown-menu">
-
-                      <%# Update other dropdown items to be a form. %>
-                      
-                      <li>
-                        <%= form_tag(tag_path(tag), method: :patch, data: {
-                          controller: "colors"
-                        }) do %>
-                          <div class="dropdown-item">
-                            <%= submit_tag "Update" %>
-                          </div>
-                        <% end %>
-                      </li>
-
-                      <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="#">Match to this Color</a></li>
-                      <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="#">Make this Tag a "Shared Tag"</a></li>
-                      <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="#">Delete (Can't Be Undone!)</a></li>
-                    </ul>
+                    <%= render partial: "partials/tag_button", locals: { tag: tag } %>
                   </div>
                 <% end %>
               </ul>

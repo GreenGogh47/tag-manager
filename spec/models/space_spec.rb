@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe Space, type: :model do
   before(:context) do
-    @space1 = FactoryBot.create(:space, hidden: false)
+    @space1 = FactoryBot.create(:space)
     @space2 = FactoryBot.create(:space)
     
     @tag1 = FactoryBot.create(:tag, space: @space1, name: "shared 1")

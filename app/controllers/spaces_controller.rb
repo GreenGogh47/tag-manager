@@ -5,6 +5,6 @@ class SpacesController < ApplicationController
     @spaces_facade = SpacesFacade.new(my_team, service)
     @spaces = Space.all
     @global_tags = Space.global_tags.uniq { |tag| tag.name }
-    # require 'pry'; binding.pry
+
   end
 end

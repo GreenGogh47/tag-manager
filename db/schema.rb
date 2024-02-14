@@ -37,7 +37,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_25_211040) do
   create_table "spaces", force: :cascade do |t|
     t.string "name"
     t.string "color"
-    t.boolean "hidden"
+    t.string "hidden"
     t.boolean "tags_enabled"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
