@@ -38,7 +38,7 @@ class SpacesFacade
 
   def create_statuses_for_space(space, statuses_data)
     statuses_data.each do |status|
-      Status.find_or_create_by!(id: status[:id].to_i) do |s|
+      Status.find_or_create_by!(c_id: status[:id], space_id: space.id) do |s|
         s.name = status[:status]
         s.orderindex = status[:orderindex]
         s.color = status[:color]
