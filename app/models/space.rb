@@ -14,29 +14,18 @@ validates :hidden, inclusion: { in: [true, false] }, allow_nil: true
   has_many :members, through: :space_members
 
   def self.global_tags
-    # tags = Tag.select("name, tag_bg")
-    #   .group(:name, :tag_bg)
-    #   .having("COUNT(DISTINCT space_id) = #{Space.distinct.count}")
+    space_count = Space.count
 
-    # tags.map do |tag|
-    #   OpenStruct.new(
-    #     name: tag.name,
-    #     tag_bg: tag.tag_bg
-    #   )
-    # end
+    matching_tags = Tag.joins(:space)
+                      .where("(tags.name, tags.tag_bg) IN (
+                              SELECT name, tag_bg
+                              FROM tags
+                              GROUP BY name, tag_bg
+                              HAVING COUNT(*) = ?
+                            )", space_count)
   end
 
   def non_global_tags
-    # tags = Tag.select("name, tag_bg")
-    #   .group(:name, :tag_bg)
-    #   .having("COUNT(DISTINCT space_id) > #{Space.distinct.count}")
-
-    # x = tags.map do |tag|
-    #   OpenStruct.new(
-    #     name: tag.name,
-    #     tag_bg: tag.tag_bg
-    #   )
-    #   require 'pry'; binding.pry
-    end
-  end
+    Space.global_tags.present? ? tags.where.not(id: Space.global_tags.pluck(:id)) : tags
+  end  
 end

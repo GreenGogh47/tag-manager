@@ -13,8 +13,7 @@ class ClickupApiService
 
   # Team ID
   def get_teams
-    x = get_url("team")
-    require 'pry'; binding.pry
+    get_url("team")
   end
 
   def my_team_id
