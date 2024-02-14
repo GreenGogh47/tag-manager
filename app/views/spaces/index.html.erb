@@ -8,16 +8,16 @@
 </head>
 <body>
 
-  <%# Begin Shared Tags %>
+  <%# Begin Global Tags %>
   <div class="card mt-4">
     <div class="card-header">
-      <h5 class="card-title">Shared Tags</h5>
+      <h5 class="card-title">Global Tags</h5>
     </div>
     <div class="card-body">
       <ul>
         <% @global_tags.each do |tag| %>
           <button type="button" class="btn btn-light custom-text-color" style="background-color: <%= tag["tag_bg"] %>;">
-            <%= tag["name"] %>
+            <%= tag.name %>
           </button>
         <% end %>
       </ul>
