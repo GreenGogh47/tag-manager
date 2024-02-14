@@ -2,11 +2,9 @@ class Space < ApplicationRecord
   validates_presence_of :id,
                         :name,
                         :color,
-                        :tags_enabled,
-                        :hidden
+                        :tags_enabled
 
-# validates :hidden, inclusion: { in: [true, false] }, allow_nil: true
-
+validates :hidden, inclusion: { in: [true, false] }, allow_nil: true
 
   has_many :statuses
   has_many :tags

@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe Space, type: :model do
   before(:context) do
-    @space1 = FactoryBot.create(:space)
+    @space1 = FactoryBot.create(:space, hidden: false)
     @space2 = FactoryBot.create(:space)
     
     @tag1 = FactoryBot.create(:tag, space: @space1, name: "shared 1")
@@ -23,7 +23,7 @@ RSpec.describe Space, type: :model do
     it { should validate_presence_of(:id) }
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:color) }
-    # it { is_expected.to validate_presence_of(:hidden) } # "private" is a reserved word
+    # "private" is a reserved word
     it { should validate_presence_of(:tags_enabled) }
   end
 
@@ -35,7 +35,6 @@ RSpec.describe Space, type: :model do
 
   describe "model methods" do
     it "::global_tags" do
-      require 'pry'; binding.pry
       expect(Space.global_tags.count).to eq(2)
       expect(Space.global_tags).to include(@tag1, @tag2)
     end
