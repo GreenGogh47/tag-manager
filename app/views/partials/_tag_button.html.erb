@@ -1,0 +1,15 @@
+<%# Tag Button Partial %>
+<div class="btn-group">
+  <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: <%= tag.tag_bg %>; color: black; border: 1px solid black;">
+    <%= tag.name %>
+  </button>
+  <ul class="dropdown-menu">
+    <li><%= link_to "Update", tag_path(tag), class: "dropdown-item" %></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" href="#">Match to this Color</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" href="#">Make this Tag a "Global Tag"</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" href="#">Delete (Can't Be Undone!)</a></li>
+  </ul>
+</div>

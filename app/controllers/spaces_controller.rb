@@ -1,6 +1,10 @@
 class SpacesController < ApplicationController
   def index
-    my_team = TeamService.new.my_team_id
-    @spaces = SpacesFacade.new(my_team)
+    service = ClickupApiService.new
+    my_team = service.my_team_id
+    @spaces_facade = SpacesFacade.new(my_team, service)
+    @spaces = Space.all
+    @global_tags = Space.global_tags.uniq { |tag| tag.name }
+
   end
 end
