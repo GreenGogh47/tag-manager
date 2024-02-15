@@ -84,7 +84,7 @@
    rails s
    ```
 
-1. Open your browser and visit `localhost:3000/spaces` to view the app.
+1. Open your browser and visit `localhost:3000` to view the app.
 
 <br>
 
@@ -108,6 +108,27 @@
     ```
 
 ## Acknowledgments
+
+<table>
+  <tr>
+    <td><img src="https://avatars.githubusercontent.com/u/116330317?v=4"></td>
+    <td><img src="https://avatars.githubusercontent.com/u/115383288?v=4"></td>
+  </tr>
+  <tr>
+    <td>Chris Crane - Creator</td>
+    <td>Axel De La Guardia - Helped with SQL queries</td>
+  </tr>
+  <tr>
+    <td>
+        <a href="https://github.com/GreenGogh47">GitHub</a><br>
+        <a href="https://www.linkedin.com/in/chrisjcrane/">LinkedIn</a>
+    </td>
+    <td>
+        <a href="https://github.com/axeldelaguardia">GitHub</a><br>
+        <a href="https://www.linkedin.com/in/axeldelaguardia/">LinkedIn</a>
+    </td>
+  </tr>
+</table>
 
 - ["The Best README Template" by Github User othneil](https://github.com/othneildrew/Best-README-Template)
 
