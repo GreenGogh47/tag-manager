@@ -4,18 +4,11 @@
     <%= tag.name %>
   </button>
   <ul class="dropdown-menu">
-    <%# Update other dropdown items to be a form. Updates and Post requests. %>
-    <li>
-      <%= form_tag(tag_path(tag), method: :patch, data: { controller: "colors" }) do %>
-        <div class="dropdown-item">
-          <%= submit_tag "Update" %>
-        </div>
-      <% end %>
-    </li>
+    <li><%= link_to "Update", tag_path(tag), class: "dropdown-item" %></li>
     <li><hr class="dropdown-divider"></li>
     <li><a class="dropdown-item" href="#">Match to this Color</a></li>
     <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="#">Make this Tag a "Shared Tag"</a></li>
+    <li><a class="dropdown-item" href="#">Make this Tag a "Global Tag"</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><a class="dropdown-item" href="#">Delete (Can't Be Undone!)</a></li>
   </ul>
